@@ -123,7 +123,11 @@ func (d *NASQtreeStorageDriver) Initialize(
 
 	// Set up internal driver state
 	d.quotaResizeMap = make(map[string]bool)
-	d.flexvolNamePrefix = fmt.Sprintf("%s_qtree_pool_%s_", artifactPrefix, *d.Config.StoragePrefix)
+	if d.Config.UseOnlyStoragePrefix {
+		d.flexvolNamePrefix = fmt.Sprintf(*d.Config.StoragePrefix)
+	} else {
+		d.flexvolNamePrefix = fmt.Sprintf("%s_qtree_pool_%s_", artifactPrefix, *d.Config.StoragePrefix)
+	}
 	d.flexvolNamePrefix = strings.Replace(d.flexvolNamePrefix, "__", "_", -1)
 	if d.Config.AutoExportPolicy {
 		d.flexvolExportPolicy = "<automatic>"

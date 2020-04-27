@@ -13,17 +13,18 @@ import (
 
 // CommonStorageDriverConfig holds settings in common across all StorageDrivers
 type CommonStorageDriverConfig struct {
-	Version           int                   `json:"version"`
-	StorageDriverName string                `json:"storageDriverName"`
-	BackendName       string                `json:"backendName"`
-	Debug             bool                  `json:"debug"`           // Unsupported!
-	DebugTraceFlags   map[string]bool       `json:"debugTraceFlags"` // Example: {"api":false, "method":true}
-	DisableDelete     bool                  `json:"disableDelete"`
-	StoragePrefixRaw  json.RawMessage       `json:"storagePrefix,string"`
-	StoragePrefix     *string               `json:"-"`
-	SerialNumbers     []string              `json:"serialNumbers,omitEmpty"`
-	DriverContext     trident.DriverContext `json:"-"`
-	LimitVolumeSize   string                `json:"limitVolumeSize"`
+	Version              int                   `json:"version"`
+	StorageDriverName    string                `json:"storageDriverName"`
+	BackendName          string                `json:"backendName"`
+	Debug                bool                  `json:"debug"`           // Unsupported!
+	DebugTraceFlags      map[string]bool       `json:"debugTraceFlags"` // Example: {"api":false, "method":true}
+	DisableDelete        bool                  `json:"disableDelete"`
+	StoragePrefixRaw     json.RawMessage       `json:"storagePrefix,string"`
+	StoragePrefix        *string               `json:"-"`
+	UseOnlyStoragePrefix bool                  `json:"useOnlyStoragePrefix"`
+	SerialNumbers        []string              `json:"serialNumbers,omitEmpty"`
+	DriverContext        trident.DriverContext `json:"-"`
+	LimitVolumeSize      string                `json:"limitVolumeSize"`
 }
 
 type CommonStorageDriverConfigDefaults struct {
